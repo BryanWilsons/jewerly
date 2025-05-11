@@ -7,97 +7,10 @@ import NECKLACE from './Assets/necklace.png';
 import BRACELETS from './Assets/bracelets.png';
 import EARRING from './Assets/earring.png';
 
-const NavLink = ({ href, children, mobile = false }) => (
-  <a
-    href={href}
-    className={`text-gray-700 hover:text-amber-600 block px-4 py-2 ${
-      mobile ? 'hover:bg-purple-100 transition-colors duration-200' : ''
-    }`}
-  >
-    {children}
-  </a>
-);
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
 
-  return (
-    <nav className="bg-white shadow-md sticky top-0 z-50 h-[90px] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex-shrink-0">
-            <Image
-              src={LOGO}
-              className="gallery-img z-0"
-              style={{ marginTop: '20px' }}
-              alt="Logo"
-              width={150}
-              height={200}
-              objectFit="cover"
-            />
-          </div>
-          <div className="hidden md:flex space-x-8 items-center text-purple-400">
-            <NavLink href="#necklaces">Necklaces</NavLink>
-            <NavLink href="#bracelets">Bracelets</NavLink>
-            <NavLink href="#earrings">Earrings</NavLink>
-            <NavLink href="#gallery">Gallery</NavLink>
-          </div>
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 focus:outline-none"
-            >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d={isOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16m-7 6h7'}
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-      {isOpen && (
-        <div
-          className="md:hidden bg-white px-4 pt-2 pb-4 fixed top-0 left-0 w-full h-[50vh] z-50 flex flex-col transition-transform duration-300 ease-in-out transform translate-y-0"
-          style={isOpen ? { transform: 'translateY(0)' } : { transform: 'translateY(-100%)' }}
-        >
-          <div className="flex justify-end">
-            <button
-              onClick={() => setIsOpen(false)}
-              className="text-gray-700 focus:outline-none p-2"
-            >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </div>
-          <NavLink href="#necklaces" mobile>Necklaces</NavLink>
-          <NavLink href="#bracelets" mobile>Bracelets</NavLink>
-          <NavLink href="#earrings" mobile>Earrings</NavLink>
-          <NavLink href="#gallery" mobile>Gallery</NavLink>
-        </div>
-      )}
-    </nav>
-  );
-};
+
+
 
 const Hero = () => (
   <section
@@ -109,7 +22,7 @@ const Hero = () => (
     }}
   >
     <div>
-      <h1 className="text-5xl md:text-6xl font-bold mb-4">Joi Jewels</h1>
+      <h1 className="text-5xl md:text-6xl font-bold mb-4">Joi Jewelry</h1>
       <p className="text-xl md:text-2xl mb-6">Discover our exquisite jewelry collections</p>
       <a
         href="#gallery"
@@ -170,7 +83,7 @@ const Gallery = () => {
 const Footer = () => (
   <footer className="bg-gray-800 text-white py-8">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <p>© 2025 Joi Jewels. All rights reserved.</p>
+      <p>© 2025 Joi Jewelry. All rights reserved.</p>
       <div className="mt-4 flex justify-center space-x-4">
         <a href="#" className="hover:text-amber-600">
           Contact
@@ -186,13 +99,19 @@ const Footer = () => (
   </footer>
 );
 
-const JewelryFrontPage = () => (
-  <div className="font-serif text-gray-800 w-screen">
-    <Navbar />
+const JewelryFrontPage = ({children}) => {
+ const [isOpen, setIsOpen] = useState(false);
+
+ return ( <>
+
+
     <Hero />
     <Gallery />
+    {children}
     <Footer />
-  </div>
-);
+
+  </>
+ )
+};
 
 export default JewelryFrontPage;
