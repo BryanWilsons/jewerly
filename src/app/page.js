@@ -7,8 +7,13 @@ import NECKLACE from './Assets/necklace.png';
 import BRACELETS from './Assets/bracelets.png';
 import EARRING from './Assets/earring.png';
 
-const NavLink = ({ href, children }) => (
-  <a href={href} className="text-gray-700 hover:text-amber-600 block px-4 py-2">
+const NavLink = ({ href, children, mobile = false }) => (
+  <a
+    href={href}
+    className={`text-gray-700 hover:text-amber-600 block px-4 py-2 ${
+      mobile ? 'hover:bg-purple-100 transition-colors duration-200' : ''
+    }`}
+  >
     {children}
   </a>
 );
@@ -60,11 +65,34 @@ const Navbar = () => {
         </div>
       </div>
       {isOpen && (
-        <div className="md:hidden bg-white px-4 pt-2 pb-4">
-          <NavLink href="#necklaces">Necklaces</NavLink>
-          <NavLink href="#bracelets">Bracelets</NavLink>
-          <NavLink href="#earrings">Earrings</NavLink>
-          <NavLink href="#gallery">Gallery</NavLink>
+        <div
+          className="md:hidden bg-white px-4 pt-2 pb-4 fixed top-0 left-0 w-full h-[50vh] z-50 flex flex-col transition-transform duration-300 ease-in-out transform translate-y-0"
+          style={isOpen ? { transform: 'translateY(0)' } : { transform: 'translateY(-100%)' }}
+        >
+          <div className="flex justify-end">
+            <button
+              onClick={() => setIsOpen(false)}
+              className="text-gray-700 focus:outline-none p-2"
+            >
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+          <NavLink href="#necklaces" mobile>Necklaces</NavLink>
+          <NavLink href="#bracelets" mobile>Bracelets</NavLink>
+          <NavLink href="#earrings" mobile>Earrings</NavLink>
+          <NavLink href="#gallery" mobile>Gallery</NavLink>
         </div>
       )}
     </nav>
@@ -72,15 +100,14 @@ const Navbar = () => {
 };
 
 const Hero = () => (
-
-<section
-  className="relative w-full h-[50vh] flex items-center justify-center text-center text-white "
-  style={{
-    backgroundImage: `linear-gradient(rgba(75, 73, 73, 0.5), rgba(0, 0, 0, 0.5)), url(./display.jpg)`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-  }}
->
+  <section
+    className="relative w-full h-[50vh] flex items-center justify-center text-center text-white "
+    style={{
+      backgroundImage: `linear-gradient(rgba(75, 73, 73, 0.5), rgba(0, 0, 0, 0.5)), url(./display.jpg)`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    }}
+  >
     <div>
       <h1 className="text-5xl md:text-6xl font-bold mb-4">Joi Jewels</h1>
       <p className="text-xl md:text-2xl mb-6">Discover our exquisite jewelry collections</p>
@@ -101,7 +128,7 @@ const Gallery = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-center mb-8">Our Collection</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 place-items-center">
-          <div className="overflow-hidden rounded-lg shadow-md w-full max-w-[300px]">
+          <div className="overflow-hidden rounded-lg shadow-md w-full max-w-[300px] h-[256px]">
             <Image
               src={NECKLACE}
               alt="Necklace"
@@ -109,10 +136,10 @@ const Gallery = () => {
               width={300}
               height={256}
               objectFit="cover"
-              className="w-full h-auto"
+              className="w-full h-full object-cover"
             />
           </div>
-          <div className="overflow-hidden rounded-lg shadow-md w-full max-w-[300px]">
+          <div className="overflow-hidden rounded-lg shadow-md w-full max-w-[300px] h-[256px]">
             <Image
               src={BRACELETS}
               alt="Bracelets"
@@ -120,10 +147,10 @@ const Gallery = () => {
               width={300}
               height={256}
               objectFit="cover"
-              className="w-full h-auto"
+              className="w-full h-full object-cover"
             />
           </div>
-          <div className="overflow-hidden rounded-lg shadow-md w-full max-w-[300px]">
+          <div className="overflow-hidden rounded-lg shadow-md w-full max-w-[300px] h-[256px]">
             <Image
               src={EARRING}
               alt="Earring"
@@ -131,7 +158,7 @@ const Gallery = () => {
               width={300}
               height={256}
               objectFit="cover"
-              className="w-full h-auto"
+              className="w-full h-full object-cover"
             />
           </div>
         </div>
