@@ -1,103 +1,168 @@
-import Image from "next/image";
+'use client';
+import React, { useState } from 'react';
+import Image from 'next/image';
 
-export default function Home() {
+import LOGO from './Assets/large.png';
+import NECKLACE from './Assets/necklace.png';
+import BRACELETS from './Assets/bracelets.png';
+import EARRING from './Assets/earring.png';
+
+const NavLink = ({ href, children }) => (
+  <a href={href} className="text-gray-700 hover:text-amber-600 block px-4 py-2">
+    {children}
+  </a>
+);
+
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">love you jo
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <nav className="bg-white shadow-md sticky top-0 z-50 h-[90px] overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          <div className="flex-shrink-0">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src={LOGO}
+              className="gallery-img z-0"
+              style={{ marginTop: '10px' }}
+              alt="Logo"
+              width={200}
+              height={96}
+              objectFit="cover"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          </div>
+          <div className="hidden md:flex space-x-8 items-center text-purple-400">
+            <NavLink href="#necklaces">Necklaces</NavLink>
+            <NavLink href="#bracelets">Bracelets</NavLink>
+            <NavLink href="#earrings">Earrings</NavLink>
+            <NavLink href="#gallery">Gallery</NavLink>
+          </div>
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-gray-700 focus:outline-none"
+            >
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d={isOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16m-7 6h7'}
+                />
+              </svg>
+            </button>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </div>
+      {isOpen && (
+        <div className="md:hidden bg-white px-4 pt-2 pb-4">
+          <NavLink href="#necklaces">Necklaces</NavLink>
+          <NavLink href="#bracelets">Bracelets</NavLink>
+          <NavLink href="#earrings">Earrings</NavLink>
+          <NavLink href="#gallery">Gallery</NavLink>
+        </div>
+      )}
+    </nav>
   );
-}
+};
+
+const Hero = () => (
+
+<section
+  className="relative w-full h-[50vh] flex items-center justify-center text-center text-white "
+  style={{
+    backgroundImage: `linear-gradient(rgba(75, 73, 73, 0.5), rgba(0, 0, 0, 0.5)), url(./display.jpg)`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  }}
+>
+    <div>
+      <h1 className="text-5xl md:text-6xl font-bold mb-4">Joi Jewels</h1>
+      <p className="text-xl md:text-2xl mb-6">Discover our exquisite jewelry collections</p>
+      <a
+        href="#gallery"
+        className="bg-purple-400 text-white px-6 py-3 rounded-md hover:bg-purple-700 transition-all duration-100 ease-in"
+        style={{ color: 'white' }}
+      >
+        Explore Now
+      </a>
+    </div>
+  </section>
+);
+
+const Gallery = () => {
+  return (
+    <section id="gallery" className="py-16 bg-gray-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-bold text-center mb-8">Our Collection</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="overflow-hidden rounded-lg shadow-md">
+            <Image
+              src={NECKLACE}
+              alt="Necklace"
+              style={{transition:"transform 0.3s ease"}}
+              width={300}
+              height={256}
+              objectFit="cover"
+            />
+          </div>
+          <div className="overflow-hidden rounded-lg shadow-md">
+            <Image
+              src={BRACELETS}
+              alt="Bracelets"
+              style={{transition:"transform 0.3s ease"}}
+              width={300}
+              height={256}
+              objectFit="cover"
+            />
+          </div>
+          <div className="overflow-hidden rounded-lg shadow-md">
+            <Image
+              src={EARRING}
+              alt="Earring"
+              style={{transition:"transform 0.3s ease"}}
+              width={300}
+              height={256}
+              objectFit="cover"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const Footer = () => (
+  <footer className="bg-gray-800 text-white py-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p>© 2025 Joi Jewels. All rights reserved.</p>
+      <div className="mt-4 flex justify-center space-x-4">
+        <a href="#" className="hover:text-amber-600">
+          Contact
+        </a>
+        <a href="#" className="hover:text-amber-600">
+          About
+        </a>
+        <a href="#" className="hover:text-amber-600">
+          Terms
+        </a>
+      </div>
+    </div>
+  </footer>
+);
+
+const JewelryFrontPage = () => (
+  <div className="font-serif text-gray-800 w-screen">
+    <Navbar />
+    <Hero />
+    <Gallery />
+    <Footer />
+  </div>
+);
+
+export default JewelryFrontPage;
