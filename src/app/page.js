@@ -24,10 +24,10 @@ const Navbar = () => {
             <Image
               src={LOGO}
               className="gallery-img z-0"
-              style={{ marginTop: '10px' }}
+              style={{ marginTop: '20px' }}
               alt="Logo"
-              width={200}
-              height={96}
+              width={150}
+              height={200}
               objectFit="cover"
             />
           </div>
@@ -100,35 +100,38 @@ const Gallery = () => {
     <section id="gallery" className="py-16 bg-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-center mb-8">Our Collection</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          <div className="overflow-hidden rounded-lg shadow-md">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 place-items-center">
+          <div className="overflow-hidden rounded-lg shadow-md w-full max-w-[300px]">
             <Image
               src={NECKLACE}
               alt="Necklace"
-              style={{transition:"transform 0.3s ease"}}
+              style={{ transition: "transform 0.3s ease" }}
               width={300}
               height={256}
               objectFit="cover"
+              className="w-full h-auto"
             />
           </div>
-          <div className="overflow-hidden rounded-lg shadow-md">
+          <div className="overflow-hidden rounded-lg shadow-md w-full max-w-[300px]">
             <Image
               src={BRACELETS}
               alt="Bracelets"
-              style={{transition:"transform 0.3s ease"}}
+              style={{ transition: "transform 0.3s ease" }}
               width={300}
               height={256}
               objectFit="cover"
+              className="w-full h-auto"
             />
           </div>
-          <div className="overflow-hidden rounded-lg shadow-md">
+          <div className="overflow-hidden rounded-lg shadow-md w-full max-w-[300px]">
             <Image
               src={EARRING}
               alt="Earring"
-              style={{transition:"transform 0.3s ease"}}
+              style={{ transition: "transform 0.3s ease" }}
               width={300}
               height={256}
               objectFit="cover"
+              className="w-full h-auto"
             />
           </div>
         </div>
